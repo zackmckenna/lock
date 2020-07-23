@@ -1,0 +1,15 @@
+{
+  "state": [
+    {
+      "isLocked": false
+    }
+  ],
+  "contents": [
+    {
+      "contents": "Here are the contents"
+    }
+  ],
+  "password": {
+    "password": "password"
+  }
+}
