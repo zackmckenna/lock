@@ -8,13 +8,17 @@ const App = () => {
   const [passwordInput, setPasswordInput ] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3001/state')
+    axios.get('http://localhost:3001/api/state')
       .then(res => res.data)
       .then(data => {
         setIsLocked(data.isLocked)
         setIsLoading(false)
       })
   }, [])
+
+  const handlePasswordChange = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div className="App">
@@ -25,7 +29,10 @@ const App = () => {
           {!isLoading && isLocked ? <h1>box is locked</h1> : <h1>box is unlocked</h1>}
         </div>
         <input
-           value={passwordInput} placeholder='password' type='password'/>
+          onChange={(e) => handlePasswordChange(e)}
+          value={passwordInput}
+          placeholder='password'
+          type='password'/>
       </header>
     </div>
   );
