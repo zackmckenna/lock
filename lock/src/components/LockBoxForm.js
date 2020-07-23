@@ -1,17 +1,17 @@
 import React from 'react'
 
 const LockBoxForm = ({
-  handleBoxContentsChange,
+  handleBoxContentChange,
   handleLockBoxSubmit,
   handlePasswordChange,
   passwordInput,
-  boxContents }) => {
+  boxContentInput }) => {
 
   return (
     <form onSubmit={(e) => handleLockBoxSubmit(e)}>
     <input
-      onChange={(e) => handleBoxContentsChange(e)}
-      value={boxContents}
+      onChange={(e) => handleBoxContentChange(e)}
+      value={boxContentInput}
       placeholder='box contents'
       type='text'/>
     <input

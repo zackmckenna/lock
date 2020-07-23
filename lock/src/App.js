@@ -25,21 +25,37 @@ const App = () => {
     setPasswordInput(e.target.value)
   }
 
-  const handleBoxContentsChange = (e) => {
+  const handleBoxContentChange = (e) => {
     e.preventDefault()
     setBoxContentInput(e.target.value)
   }
 
-  const handleUnlockBoxSubmit = (e) => {
+  const handleUnlockBoxSubmit = async (e) => {
     e.preventDefault()
     console.log(passwordInput)
     setPasswordInput('')
+    const response = await axios.post('http://localhost:3001/api/lock')
   }
 
-  const handleLockBoxSubmit = (e) => {
+  const handleLockBoxSubmit = async (e) => {
     e.preventDefault()
+    const boxData = {
+      content: boxContentInput,
+      password: passwordInput
+    }
+
+    const success = await axios.post('http://localhost:3001/api/lock', boxData)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
     console.log(passwordInput)
+    console.log(boxContentInput)
     setPasswordInput('')
+    setBoxContentInput('')
   }
 
   const renderBoxForm = () => {
@@ -52,7 +68,7 @@ const App = () => {
       return <LockBoxForm
         handlePasswordChange={handlePasswordChange}
         handleLockBoxSubmit={handleLockBoxSubmit}
-        handleBoxContentsChange={handleBoxContentsChange}
+        handleBoxContentChange={handleBoxContentChange}
         passwordInput={passwordInput}
         boxContentInput={boxContentInput}
       />
